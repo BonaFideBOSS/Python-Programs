@@ -7,3 +7,7 @@
 Download python 3.3+ to run these programs.
 <br/>
 Link: https://www.python.org/downloads/
+
+Or use an online compiler.
+<br/>
+Link: https://www.programiz.com/python-programming/online-compiler/
