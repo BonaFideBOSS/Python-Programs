@@ -10,4 +10,4 @@ Link: https://www.python.org/downloads/
 
 Or use an online compiler.
 <br/>
-Link: ![https://www.programiz.com/python-programming/online-compiler/](https://www.programiz.com/python-programming/online-compiler/)
+Link: https://www.programiz.com/python-programming/online-compiler/
