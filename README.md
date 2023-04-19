@@ -4,10 +4,10 @@
 </h2>
 <h4>Python console programs.</h4>
 
-Download python 3.3+ to run these programs.
+Download latest python to run these programs.
 <br/>
 Link: https://www.python.org/downloads/
 
-Or use an online compiler.
+Or use an online compiler (this may not always work).
 <br/>
 Link: https://www.programiz.com/python-programming/online-compiler/
