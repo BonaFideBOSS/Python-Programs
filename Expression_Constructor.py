@@ -166,15 +166,18 @@ def run_again():
 
 
 intro = """
-    ===== COUNTDOWN SOLVER a.k.a Expression Constructor ====
-
-    Usage:
-    >> TARGET_NUMBER LIST_OF_NUMBERS
-
-    Example:
-    >> 150 6 10 9 6 5
-        ^  ----^-----    
-      Target Numbers    
+    |‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|
+    |         COUNTDOWN SOLVER a.k.a EXPRESSION CONSRUCTOR          |
+    |                                                               |
+    | Usage:                                                        |
+    | >> TARGET_NUMBER LIST_OF_NUMBERS                              |
+    |                                                               |
+    | Example:                                                      |
+    | >> 150 6 10 9 6 5                                             |
+    |     ^  ----^-----                                             |
+    |   Target Numbers                                              |
+    |                                                               |
+    |_______________________________________________________________|
 """
 print(intro)
 program()
