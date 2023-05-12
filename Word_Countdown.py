@@ -1,27 +1,11 @@
 import itertools
 from collections import defaultdict
-import random
 import time
 
 print("====================================")
 print("Proccessing...")
 
-#initializing vowels and consonants
-vowel = list("aeiou")
-consonant = list("bcdfghjklmnpqrstvwxyz")
-
 start = time.time()
-
-# method that generates vowels and consonants
-def vowels_consonants(vow, cons):
-    vowels = [letter for letter in vow if letter in vow]
-    consonants = [c for c in cons if c in cons]
-    randConsonant = random.sample(consonants, 4)
-    randVowel = random.sample(vowels, 5)
-	
-    newstring = randConsonant + randVowel
-    vowelsconsonantsword = "".join(newstring)
-    return vowelsconsonantsword
     
 # read from file and and populate the dictionary
 words = defaultdict(list)
@@ -35,10 +19,10 @@ for word in f:
 def generate_longest_word():
     outputlist = []
     inputWord = "iseudospo"     #assign generated vowels and consonants to variable inputWord 
-    print("Randomly Generated letters are: ", inputWord)
+    print("Letters are: ", inputWord)
     length_of_word = len(inputWord)
     #sort the vowels and consonants
-    inputWord = sorted(inputWord) 
+    inputWord = sorted(inputWord)
     while length_of_word > 0:
         # generate possible combinations of anagrams based on the length_of_word
         #itertools combinations will maintain the sort order of the letters
