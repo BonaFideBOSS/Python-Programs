@@ -13,10 +13,22 @@ def csv_to_dict(filename):
     return result_dict
 
 
+def txt_to_list(filename):
+    with open(filename, "r") as f:
+        words = [line.strip() for line in f]
+        return set(words)
+
+
 # Read Dictionary
 print("Reading dictionary...")
 filename = "dictionary.csv"
-dictionary = csv_to_dict(filename)
+dictionary = None
+dictionary_with_definition = False
+if filename.split(".")[-1] == "csv":
+    dictionary = csv_to_dict(filename)
+    dictionary_with_definition = True
+else:
+    dictionary = txt_to_list(filename)
 print("Reading dictionary completed!")
 
 
@@ -48,18 +60,22 @@ def longest_words(letters):
         print("Total number of possible words: ", word_count)
         print("Longest word length: ", len(longest_word))
         print("Longest Word: ", longest_word)
-        print("Definition: ", dictionary[longest_word])
+        if dictionary_with_definition:
+            print("Definition: ", dictionary[longest_word])
         if same_len_words:
             print(f"Other {longest_len} letter words")
-            for word in same_len_words:
-                print(f"{word}: {dictionary[word]}")
+            if dictionary_with_definition:
+                for word in same_len_words:
+                    print(f"{word}: {dictionary[word]}")
+            else:
+                print(*same_len_words, sep="\n")
     else:
         print("No possible word found in dictionary.")
 
 
 def program():
-    start = time.time()
     letters = input("\nEnter letters: ")
+    start = time.time()
     longest_words(letters)
     end = time.time()
     print("Processing completed!")
