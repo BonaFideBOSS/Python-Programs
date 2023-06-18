@@ -1,6 +1,32 @@
 import csv
 import itertools
 import time
+import os
+import msvcrt
+
+
+def get_file_selection(files):
+    current_row = 0
+
+    while True:
+        os.system("cls")
+        print("Select your dictionary (use arrow keys):")
+        for i, file in enumerate(files):
+            if i == current_row:
+                print("->", file)
+            else:
+                print("  ", file)
+
+        key = msvcrt.getch()
+
+        if key == b"\xe0":  # arrow key prefix
+            key = msvcrt.getch()
+            if key == b"H" and current_row > 0:  # up arrow
+                current_row -= 1
+            elif key == b"P" and current_row < len(files) - 1:  # down arrow
+                current_row += 1
+        elif key == b"\r":  # Enter key
+            return files[current_row]
 
 
 def csv_to_dict(filename):
@@ -19,9 +45,10 @@ def txt_to_list(filename):
         return set(words)
 
 
-# Read Dictionary
-print("Reading dictionary...")
-filename = "dictionary.csv"
+# Get and read dictionary file
+files = [file for file in os.listdir() if file.endswith((".txt", ".csv"))]
+filename = get_file_selection(files)
+print(f"Reading dictionary... | file: {filename}")
 dictionary = None
 dictionary_with_definition = False
 if filename.split(".")[-1] == "csv":
@@ -59,16 +86,16 @@ def longest_words(letters):
         same_len_words = [item for item in words if len(item) == longest_len]
         print("Total number of possible words: ", word_count)
         print("Longest word length: ", len(longest_word))
-        print("Longest Word: ", longest_word)
+        print("- Longest Word: ", longest_word)
         if dictionary_with_definition:
             print("Definition: ", dictionary[longest_word])
         if same_len_words:
             print(f"Other {longest_len} letter words")
             if dictionary_with_definition:
                 for word in same_len_words:
-                    print(f"{word}: {dictionary[word]}")
+                    print(f"- {word}: {dictionary[word]}")
             else:
-                print(*same_len_words, sep="\n")
+                print("\n".join(map(lambda x: "- " + x, same_len_words)))
     else:
         print("No possible word found in dictionary.")
 
