@@ -1,4 +1,7 @@
 import hashlib
-string = input("write something: ")
-result = hashlib.md5(string.encode())
-print(result.hexdigest())
+def program():
+    string = input("write something: ")
+    result = hashlib.md5(string.encode())
+    print(result.hexdigest())
+    program()
+program()
