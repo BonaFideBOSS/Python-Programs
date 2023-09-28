@@ -1,20 +1,25 @@
-def knapSack(cap, wgt, val, n):
-    n = n if n == 0 else n - 1
+def knapsack(cap, wgt, val):
+    n = len(val)
+    ks = [[0 for _ in range(cap + 1)] for _ in range(n + 1)]
 
-    if n == 0 or cap == 0:
-        return 0, []
+    for i in range(1, n + 1):
+        for w in range(cap + 1):
+            if wgt[i - 1] <= w:
+                ks[i][w] = max(ks[i - 1][w], ks[i - 1][w - wgt[i - 1]] + val[i - 1])
+            else:
+                ks[i][w] = ks[i - 1][w]
 
-    if wgt[n] > cap:
-        return knapSack(cap, wgt, val, n)
+    max_value = ks[n][cap]
 
-    old_max_val, old_item_set = knapSack(cap, wgt, val, n)
-    new_max_val, new_item_set = knapSack(cap - wgt[n], wgt, val, n)
-    new_max_val += val[n]
+    selected_items = []
+    w = cap
+    for i in range(n, 0, -1):
+        if ks[i][w] != ks[i - 1][w]:
+            selected_items.append(i - 1)
+            w -= wgt[i - 1]
 
-    if new_max_val > old_max_val:
-        return new_max_val, new_item_set + [n]
-    else:
-        return old_max_val, old_item_set
+    selected_items.reverse()
+    return max_value, selected_items
 
 
 items = [
@@ -28,10 +33,9 @@ items = [
 values = [item["value"] for item in items]
 weights = [item["weight"] for item in items]
 capacity = 15
-item_count = len(items)
 
-max_value, selected_items = knapSack(capacity, weights, values, item_count)
+max_value, selected_items = knapsack(capacity, weights, values)
 
 print("Maximum value:", max_value)
-print("Selected items:", [items[item]["name"] for item in selected_items])
-print("Selected items weight:", sum([items[item]["weight"] for item in selected_items]))
+print("Selected items:", [items[i]["name"] for i in selected_items])
+print("Selected items weight:", sum([items[i]["weight"] for i in selected_items]))
